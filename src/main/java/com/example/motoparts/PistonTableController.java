@@ -24,9 +24,9 @@ public class PistonTableController implements Initializable {
 
     private LinkedHashMap<Integer , String> parameters;
 
-    private String query = "SELECT *" +"\n" +
-                           "FROM PISTONS"+ "\n" +
-                           "WHERE" +"\n" ;
+//    private String query = "SELECT *" +"\n" +
+//                           "FROM PISTONS"+ "\n" +
+//                           "WHERE" +"\n" ;
     @FXML
     private TableView<Piston> pistonTable;
 
@@ -89,54 +89,16 @@ public class PistonTableController implements Initializable {
         controller.initDatabase();
         ResultSet rs;
         ObservableList<Piston> pistons =  FXCollections.observableArrayList();
-        String queryPart = "";
+
+
 
         try {
 
-            pistonMap = new LinkedHashMap<>();
-            parameters = new LinkedHashMap<>();
-            if(inCompression != "" && inCompression != null){
-                pistonMap.put("compression" , inCompression);
-            }
-            if(inDiameter != "" && inDiameter != null){
-                pistonMap.put("diameter" , inDiameter);
-            }
-            if(inPinDiameter != "" && inPinDiameter != null){
-                pistonMap.put("pinDiameter" , inPinDiameter);
-            }
-            if(inModel != "" && inModel != null){
-                pistonMap.put("model" , inModel);
-            }
-            if(inBrand != "" && inBrand != null){
-                pistonMap.put("brand" , inBrand);
-            }
-            if(inStroke != "" && inStroke != null){
-                pistonMap.put("stroke" , inStroke);
-            }
+            QueryGenerator generator = new QueryGenerator();
+            String query = generator.generateQuery(inCompression , inDiameter , inPinDiameter , inModel , inBrand , inStroke);
 
-            int elementCounter = 1;
-            int pistonMapSize = pistonMap.size();
-            for (Map.Entry<String, String> set :
-                    pistonMap.entrySet()) {
-                    if(elementCounter == pistonMapSize){
-                        queryPart = queryPart +"PISTONS."+set.getKey() +" = " +set.getValue()  +";";
-                    }
-                    else{
-                        queryPart = queryPart +"PISTONS."+set.getKey() +" = " +set.getValue()  +" AND " ;
-                    }
+            rs = controller.searchPistons(query);
 
-                parameters.put(elementCounter , set.getValue());
-                elementCounter++;
-            }
-            query = query + queryPart;
-            System.out.println(query);
-            query = "SELECT * "  +
-                    "FROM PISTONS " +
-                    "WHERE "  ;
-
-            String query2 = "SELECT * FROM PISTONS WHERE PISTONS.brand = Yamaha ;";
-
-            rs = controller.searchPistons(query , parameters);
             while(rs.next()){
                 String pistonCode = rs.getString("pistonCode") ;
                 Double diameter = rs.getDouble("diameter");
@@ -146,163 +108,11 @@ public class PistonTableController implements Initializable {
                 String stroke = rs.getString("stroke");
                 String brand = rs.getString("brand");
                 String model = rs.getString("model");
-//                System.out.println(pistonCode +" " +diameter +" " +totalHeight + " " +compressionHeight + " " +pinDiameter + " " +stroke +" " +brand + " " +model);
 
                 pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
             }
 
-//            if(inCompression == "" &&  inDiameter != "" && inPinDiameter != "" && inModel != "" && inBrand != "" && inStroke != null){
-//                rs = controller.getPistonsWithoutComp(Double.parseDouble(inDiameter) ,
-//                        Double.parseDouble(inPinDiameter) , inModel , inBrand , inStroke);
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
-//            else if( inCompression == "" &&  inDiameter == "" && inPinDiameter != "" && inModel != "" && inBrand != "" && inStroke != null){
-//                rs = controller.getPistonsWithoutCompAndDiameter(Double.parseDouble(inPinDiameter) , inModel , inBrand , inStroke);
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
-//            else if(inCompression == "" &&  inDiameter == "" && inPinDiameter == "" && inModel != "" && inBrand != "" && inStroke != null){
-//                rs = controller.getPistonsWithoutCompDiameterAndPinDiameter(inModel , inBrand , inStroke);
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
-//            else if(inCompression == "" &&  inDiameter == "" && inPinDiameter == "" && inModel == "" && inBrand != "" && inStroke != null){
-//                rs = controller.getPistonsWithoutCompDiameterAndPinDiameterAndModel(inBrand , inStroke);
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
-//            else if(inCompression == "" &&  inDiameter == "" && inPinDiameter == "" && inModel == "" && inBrand == "" && inStroke != null){
-//                rs = controller.getOnlyWithStroke(inStroke);
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
-//            else if(inCompression == "" &&  inDiameter != "" && inPinDiameter == "" && inModel == "" && inBrand == "" && inStroke == null ){
-//                rs = controller.getOnlyWithDiameter(Double.parseDouble(inDiameter));
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
-//            else if(inCompression == "" &&  inDiameter == "" && inPinDiameter == "" && inModel == "" && inBrand != "" && inStroke == null){
-//                rs = controller.getOnlyWithBrand(inBrand);
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
-//            else if(inCompression != "" &&  inDiameter == "" && inPinDiameter == "" && inModel == "" && inBrand == "" && inStroke == null){
-//                rs = controller.getOnlyWithCompression(inCompression);
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
-//            else if(inCompression == "" &&  inDiameter == "" && inPinDiameter == "" && inModel != "" && inBrand == "" && inStroke == null){
-//                rs = controller.getOnlyWithModel(inModel);
-//                while(rs.next()){
-//                    String pistonCode = rs.getString("pistonCode") ;
-//                    Double diameter = rs.getDouble("diameter");
-//                    Double totalHeight = rs.getDouble("height");
-//                    Double compressionHeight = rs.getDouble("compressionHeight");
-//                    Double pinDiameter = rs.getDouble("pinDiameter");
-//                    String stroke = rs.getString("stroke");
-//                    String brand = rs.getString("brand");
-//                    String model = rs.getString("model");
-//
-//                    pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//                }
-//            }
 
-//            rs = controller.getPistonsByDetails(Double.valueOf(inCompression) , Double.parseDouble(inDiameter) ,
-//                                                Double.parseDouble(inPinDiameter) , inModel , inBrand , inStroke);
-
-//            while(rs.next()){
-//                String pistonCode = rs.getString("pistonCode") ;
-//                Double diameter = rs.getDouble("diameter");
-//                Double totalHeight = rs.getDouble("height");
-//                Double compressionHeight = rs.getDouble("compressionHeight");
-//                Double pinDiameter = rs.getDouble("pinDiameter");
-//                String stroke = rs.getString("stroke");
-//                String brand = rs.getString("brand");
-//                String model = rs.getString("model");
-//
-//                pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model));
-//            }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -348,8 +158,6 @@ public class PistonTableController implements Initializable {
         pistonTable.setItems(pistons);
 
         strokeCB.getItems().addAll(strokes);
-
-
 
     }
 }
