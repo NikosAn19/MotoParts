@@ -4,10 +4,11 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class QueryGenerator {
+
     public QueryGenerator(){
 
     }
-    public String generateQuery(String inCompression , String inDiameter , String inPinDiameter , String inModel , String inBrand , String inStroke ){
+    public String generateSelectQuery(String inCompression , String inDiameter , String inPinDiameter , String inModel , String inBrand , String inStroke ){
 
         LinkedHashMap<String , String> pistonMap;
 
@@ -20,6 +21,8 @@ public class QueryGenerator {
                        "FROM PISTONS"+ "\n" +
                        "WHERE" +"\n" ;
 
+
+        //For empty entrance to avoid IO exception
        if      ((inCompression == "" || inCompression == null) &&
                (inDiameter == "" || inDiameter == null) &&
                (inPinDiameter == "" || inPinDiameter == null) &&
@@ -68,4 +71,8 @@ public class QueryGenerator {
 
         return query;
     }
+
+
+
+
 }

@@ -3,30 +3,30 @@ package com.example.motoparts;
 import data.classes.Piston;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 //import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import com.gluonhq.charm.glisten.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import javafx.stage.Stage;
 
 public class PistonTableController implements Initializable {
     private ArrayList<String> pistonData;
     private LinkedHashMap<String , String> pistonMap;
-
     private LinkedHashMap<Integer , String> parameters;
 
-//    private String query = "SELECT *" +"\n" +
-//                           "FROM PISTONS"+ "\n" +
-//                           "WHERE" +"\n" ;
     @FXML
     private TableView<Piston> pistonTable;
 
@@ -78,6 +78,24 @@ public class PistonTableController implements Initializable {
     private final String[] strokes = {"2T" ,"4T"};
 
     @FXML
+    void openNewPistonWindow(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addNewPiston.fxml"));
+        Parent root = (Parent)fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene((root)));
+        stage.show();
+
+    }
+//    @FXML
+//    void openNewPistonWindow(MouseEvent event) throws IOException {
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addNewPiston.fxml"));
+//        Parent root = (Parent)fxmlLoader.load();
+//        Stage stage = new Stage();
+//        stage.setScene(new Scene((root)));
+//        stage.show();
+//    }
+
+    @FXML
     void searchPistons(MouseEvent event) {
         String inCompression = compressionHeightTF.getText();
         String inDiameter = diameterTF.getText();
@@ -90,12 +108,10 @@ public class PistonTableController implements Initializable {
         ResultSet rs;
         ObservableList<Piston> pistons =  FXCollections.observableArrayList();
 
-
-
         try {
 
             QueryGenerator generator = new QueryGenerator();
-            String query = generator.generateQuery(inCompression , inDiameter , inPinDiameter , inModel , inBrand , inStroke);
+            String query = generator.generateSelectQuery(inCompression , inDiameter , inPinDiameter , inModel , inBrand , inStroke);
 
             rs = controller.searchPistons(query);
 
@@ -153,7 +169,6 @@ public class PistonTableController implements Initializable {
         pistonStrokeCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("stroke"));
         pistonBrandCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("brand"));
         pistonModelCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("model"));
-
 
         pistonTable.setItems(pistons);
 

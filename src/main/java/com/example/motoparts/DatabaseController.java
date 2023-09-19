@@ -1,10 +1,6 @@
 package com.example.motoparts;
 
-import javax.xml.transform.Result;
 import java.sql.*;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class DatabaseController {
     Connection conn ;
@@ -37,6 +33,25 @@ public class DatabaseController {
         System.out.println("Statement executed");
 
         return rs;
+    }
+
+    public String insertPiston(String inCode , String inDiameter , String inHeight , String inCompression , String inPinDiameter , String inStroke , String inBrand , String inModel   ) throws SQLException {
+
+        String query = "INSERT INTO PISTONS(pistonCode , diameter , height , compressionHeight , pinDiameter , stroke , brand , model) VALUES (? , ? , ? , ? , ? , ? , ? , ?)" ;
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setString(1 , inCode);
+        statement.setDouble(2 , Double.parseDouble(inDiameter));
+        statement.setDouble(3 , Double.parseDouble(inHeight));
+        statement.setDouble(4 , Double.parseDouble(inCompression));
+        statement.setDouble(5 , Double.parseDouble(inPinDiameter));
+        statement.setString(6 , inStroke);
+        statement.setString(7 , inBrand);
+        statement.setString(8 , inModel);
+
+        statement.executeUpdate();
+        statement.close();
+
+        return "The piston with code : " +inCode +" and diameter : " +inDiameter +" has been inserted";
     }
 
 
