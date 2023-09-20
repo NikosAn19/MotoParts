@@ -35,22 +35,42 @@ public class DatabaseController {
         return rs;
     }
 
-    public String insertPiston(String inCode , String inDiameter , String inHeight , String inCompression , String inPinDiameter , String inStroke , String inBrand , String inModel   ) throws SQLException {
+    public String insertPiston(String inCode , String inDiameter , String inHeight , String inCompression , String inPinDiameter , String inStroke , String inBrand , String inModel   )  {
 
-        String query = "INSERT INTO PISTONS(pistonCode , diameter , height , compressionHeight , pinDiameter , stroke , brand , model) VALUES (? , ? , ? , ? , ? , ? , ? , ?)" ;
-        PreparedStatement statement = conn.prepareStatement(query);
-        statement.setString(1 , inCode);
-        statement.setDouble(2 , Double.parseDouble(inDiameter));
-        statement.setDouble(3 , Double.parseDouble(inHeight));
-        statement.setDouble(4 , Double.parseDouble(inCompression));
-        statement.setDouble(5 , Double.parseDouble(inPinDiameter));
-        statement.setString(6 , inStroke);
-        statement.setString(7 , inBrand);
-        statement.setString(8 , inModel);
+        try{
+            String query = "INSERT INTO PISTONS(pistonCode , diameter , height , compressionHeight , pinDiameter , stroke , brand , model) VALUES (? , ? , ? , ? , ? , ? , ? , ?)" ;
+            PreparedStatement statement = conn.prepareStatement(query);
+            statement.setString(1 , inCode);
+            statement.setDouble(2 , Double.parseDouble(inDiameter));
+            statement.setDouble(3 , Double.parseDouble(inHeight));
+            statement.setDouble(4 , Double.parseDouble(inCompression));
+            statement.setDouble(5 , Double.parseDouble(inPinDiameter));
+            statement.setString(6 , inStroke);
+            statement.setString(7 , inBrand);
+            statement.setString(8 , inModel);
 
-        statement.executeUpdate();
-        statement.close();
+            statement.executeUpdate();
+            statement.close();
 
+            return "The piston with code : " +inCode +" and diameter : " +inDiameter +" has been inserted";
+        }catch (SQLException e){
+            System.out.println("Duplicate entry");
+        }
+//        String query = "INSERT INTO PISTONS(pistonCode , diameter , height , compressionHeight , pinDiameter , stroke , brand , model) VALUES (? , ? , ? , ? , ? , ? , ? , ?)" ;
+//        PreparedStatement statement = conn.prepareStatement(query);
+//        statement.setString(1 , inCode);
+//        statement.setDouble(2 , Double.parseDouble(inDiameter));
+//        statement.setDouble(3 , Double.parseDouble(inHeight));
+//        statement.setDouble(4 , Double.parseDouble(inCompression));
+//        statement.setDouble(5 , Double.parseDouble(inPinDiameter));
+//        statement.setString(6 , inStroke);
+//        statement.setString(7 , inBrand);
+//        statement.setString(8 , inModel);
+//
+//        statement.executeUpdate();
+//        statement.close();
+//
+//        return "The piston with code : " +inCode +" and diameter : " +inDiameter +" has been inserted";
         return "The piston with code : " +inCode +" and diameter : " +inDiameter +" has been inserted";
     }
 

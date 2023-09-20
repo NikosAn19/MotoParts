@@ -24,12 +24,12 @@
       <TextField fx:id="compTF" layoutX="132.0" layoutY="105.0" prefHeight="25.0" prefWidth="64.0" />
       <Label layoutX="132.0" layoutY="152.0" text="Pin Diameter" />
       <TextField fx:id="pinDiameterTF" layoutX="132.0" layoutY="169.0" prefHeight="25.0" prefWidth="64.0" />
-      <Label layoutX="130.0" layoutY="225.0" text="Stroke" />
+      <Label layoutX="138.0" layoutY="225.0" text="Stroke" />
       <Label layoutX="261.0" layoutY="88.0" text="Model" />
       <TextField fx:id="modelTF" layoutX="261.0" layoutY="105.0" prefHeight="25.0" prefWidth="97.0" />
       <Label layoutX="261.0" layoutY="152.0" text="Brand" />
       <TextField fx:id="brandTF" layoutX="261.0" layoutY="169.0" prefHeight="25.0" prefWidth="97.0" />
       <Button fx:id="newPistonBtn" layoutX="358.0" layoutY="249.0" mnemonicParsing="false" onAction="#addNewPiston" prefHeight="25.0" prefWidth="109.0" text="Add Piston" />
-      <ChoiceBox fx:id="strokeCB" layoutX="130.0" layoutY="249.0" prefHeight="25.0" prefWidth="49.0" />
+      <ChoiceBox fx:id="strokeCB" layoutX="131.0" layoutY="242.0" prefHeight="25.0" prefWidth="49.0" />
    </children>
 </AnchorPane>
