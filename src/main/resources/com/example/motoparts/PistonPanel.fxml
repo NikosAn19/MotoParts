@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="1252.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.motoparts.PistonPanelController">
+   <left>
+      <VBox prefHeight="508.0" prefWidth="202.0" style="-fx-background-color: #4d0c70;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="118.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="46.0" layoutY="42.0" text="MotoParts" textFill="#f5f3f3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="240.0" style="-fx-background-color: #3F2B63;" text="PISTONS" textFill="#f2ecec">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="#f2eeee" glyphName="EDIT" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="241.0" style="-fx-background-color: #3F2B63;" text="RODS" textFill="#f2ecec">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+               <graphic>
+                  <FontAwesomeIconView fill="#f2eeee" glyphName="EDIT" />
+               </graphic>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <TableView fx:id="pistonTable" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn id="pistonCodeCol" fx:id="pistonCodeCol" prefWidth="75.0" text="Code" />
+            <TableColumn id="pistonDiameterCol" fx:id="pistonDiameterCol" prefWidth="96.0" text="Diameter (mm)" />
+            <TableColumn id="pistonHeightCol" fx:id="pistonTotalHeightCol" prefWidth="112.0" text="Total Height (mm)" />
+            <TableColumn id="pistonPinCol" fx:id="pistonCompressionHeightCol" prefWidth="153.0" text="Compression Height (mm)" />
+            <TableColumn id="pistonPinCol" fx:id="pinDiameterCol" prefWidth="122.0" text="Pin Diameter (mm)" />
+            <TableColumn id="pistonPinCol" fx:id="pistonStrokeCol" prefWidth="103.0" text="Stroke" />
+            <TableColumn id="pistonBrandCol" fx:id="pistonBrandCol" prefWidth="65.0" text="Brand" />
+            <TableColumn id="pistonModelCol" fx:id="pistonModelCol" prefWidth="63.0" text="Model" />
+            <TableColumn id="pistonOversizeCol" fx:id="pistonOversizeCol" prefWidth="74.0" text="Oversize" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: purple;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <VBox prefHeight="652.0" prefWidth="186.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="searchPistonsBtn" mnemonicParsing="false" onAction="#openSearchPistonWindow" prefHeight="25.0" prefWidth="121.0" text="Search">
+               <VBox.margin>
+                  <Insets left="30.0" top="100.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deletePistonPressed" prefHeight="25.0" prefWidth="120.0" text="Delete">
+               <VBox.margin>
+                  <Insets left="30.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="refreshBtn" mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="120.0" text="Refresh">
+               <VBox.margin>
+                  <Insets left="30.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="addNewPistonBtn" mnemonicParsing="false" onAction="#openNewPistonWindow" prefHeight="25.0" prefWidth="121.0" text="Add">
+               <VBox.margin>
+                  <Insets left="30.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children></VBox>
+   </right>
+</BorderPane>

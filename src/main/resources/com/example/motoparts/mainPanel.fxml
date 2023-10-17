@@ -16,7 +16,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="945.0" stylesheets="@table-view.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.motoparts.PistonTableController">
    <children>
-      <VBox prefHeight="590.0" prefWidth="241.0" style="-fx-background-color: #4d0c70;">
+      <VBox prefHeight="590.0" prefWidth="241.0" style="-fx-background-color: #4d0c70;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="118.0" prefWidth="241.0">
                <children>
@@ -57,7 +57,7 @@
             </Button>
          </children>
       </VBox>
-      <TableView id="pistonTable" fx:id="pistonTable" layoutX="241.0" layoutY="227.0" prefHeight="349.0" prefWidth="701.0" style="-fx-background-color: white;">
+      <TableView id="pistonTable" fx:id="pistonTable" layoutX="241.0" layoutY="224.0" prefHeight="352.0" prefWidth="701.0" style="-fx-background-color: white;" AnchorPane.leftAnchor="241.0" AnchorPane.rightAnchor="3.0">
         <columns>
           <TableColumn id="pistonCodeCol" fx:id="pistonCodeCol" prefWidth="75.0" text="Code" />
           <TableColumn id="pistonDiameterCol" fx:id="pistonDiameterCol" prefWidth="96.0" text="Diameter (mm)" />
@@ -78,13 +78,15 @@
       <TextField fx:id="compressionHeightTF" layoutX="473.0" layoutY="45.0" prefHeight="25.0" prefWidth="43.0" />
       <Label layoutX="368.0" layoutY="28.0" text="Stroke" />
       <Label layoutX="608.0" layoutY="28.0" text="Pin Diameter" />
-      <TextField fx:id="pinDiameterTF" layoutX="615.0" layoutY="45.0" prefHeight="25.0" prefWidth="43.0" />
+      <TextField fx:id="pinDiameterTF" layoutX="615.0" layoutY="45.0" prefHeight="25.0" prefWidth="43.0" AnchorPane.rightAnchor="287.0" />
       <Label layoutX="268.0" layoutY="89.0" text="Model" />
       <Label layoutX="397.0" layoutY="89.0" text="Brand" />
       <TextField fx:id="brandTF" layoutX="387.0" layoutY="112.0" prefHeight="25.0" prefWidth="77.0" />
       <TextField fx:id="modelTF" layoutX="265.0" layoutY="112.0" prefHeight="25.0" prefWidth="77.0" />
-      <Button fx:id="searchBtn" layoutX="550.0" layoutY="112.0" mnemonicParsing="false" onMouseClicked="#searchPistons" prefHeight="25.0" prefWidth="117.0" text="Search" />
+      <Button fx:id="searchBtn" layoutX="588.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#searchPistons" prefHeight="30.0" prefWidth="117.0" text="Search" />
       <ChoiceBox fx:id="strokeCB" layoutX="363.0" layoutY="45.0" prefHeight="25.0" prefWidth="49.0" />
-      <Button fx:id="newPistonBtn" layoutX="784.0" layoutY="46.0" mnemonicParsing="false" onAction="#openNewPistonWindow" text="Add New Piston" />
+      <Button fx:id="newPistonBtn" layoutX="776.0" layoutY="43.0" mnemonicParsing="false" onAction="#openNewPistonWindow" text="Add New Piston" AnchorPane.rightAnchor="60.0" />
+      <Button fx:id="deletePistonBttn" layoutX="776.0" layoutY="110.0" mnemonicParsing="false" onAction="#deletePistonPressed" text="Delete Piston" AnchorPane.rightAnchor="76.0" />
+      <Button fx:id="refreshBtn" layoutX="776.0" layoutY="169.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" AnchorPane.rightAnchor="109.0" AnchorPane.topAnchor="169.0" />
    </children>
 </AnchorPane>

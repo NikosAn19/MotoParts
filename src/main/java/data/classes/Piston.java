@@ -10,7 +10,12 @@ public class Piston {
     private String brand;
     private String model;
 
-    public Piston(String pistonCode, double diameter, double totalHeight, double compressionHeight, double pinDiameter, String stroke, String brand, String model) {
+
+
+    private String oversize;
+
+
+    public Piston(String pistonCode, double diameter, double totalHeight, double compressionHeight, double pinDiameter, String stroke, String brand, String model , String oversize) {
         this.pistonCode = pistonCode;
         this.diameter = diameter;
         this.totalHeight = totalHeight;
@@ -19,6 +24,7 @@ public class Piston {
         this.stroke = stroke;
         this.brand = brand;
         this.model = model;
+        this.oversize = oversize;
     }
 
     public String getPistonCode() {
@@ -83,5 +89,13 @@ public class Piston {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getOversize() {
+        return oversize;
+    }
+
+    public void setOversize(String oversize) {
+        this.oversize = oversize;
     }
 }

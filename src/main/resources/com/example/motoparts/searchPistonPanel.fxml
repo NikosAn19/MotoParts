@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="796.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.motoparts.SearchPistonPanelController">
+   <children>
+      <HBox layoutX="-1.0" prefHeight="123.0" prefWidth="537.0" style="-fx-background-color: #4d0c70;">
+         <children>
+            <Label prefHeight="35.0" prefWidth="158.0" text="Search Piston" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="200.0" top="50.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <VBox layoutX="-1.0" layoutY="123.0" prefHeight="675.0" prefWidth="537.0">
+         <children>
+            <Label text="Stroke">
+               <graphic>
+                  <ChoiceBox fx:id="strokeCB" prefHeight="31.0" prefWidth="162.0" />
+               </graphic>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="180.0" top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label text="Code">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <TextField fx:id="codeTF" promptText="code.." />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="180.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Total Height">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <TextField fx:id="totalHeightTF" promptText="total height.." />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="180.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Compression ">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <TextField fx:id="compressionHeightTF" promptText="compression.." />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="180.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Diameter">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <TextField fx:id="diameterTF" promptText="diameter.." />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="180.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Pin Diameter">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <TextField fx:id="pinDiameterTF" promptText="pin diameter.." />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="180.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Brand">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <TextField fx:id="brandTF" promptText="brand.." />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="180.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Model">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <TextField fx:id="modelTF" promptText="model.." />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="180.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Label text="Oversize">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+               <graphic>
+                  <TextField fx:id="oversizeTF" promptText="oversize.." />
+               </graphic>
+               <VBox.margin>
+                  <Insets left="180.0" top="30.0" />
+               </VBox.margin>
+            </Label>
+            <Button fx:id="searchBtn" mnemonicParsing="false" onAction="#searchBtnClicked" prefHeight="45.0" prefWidth="206.0" text="Search">
+               <VBox.margin>
+                  <Insets left="180.0" top="60.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

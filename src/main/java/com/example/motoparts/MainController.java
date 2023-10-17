@@ -13,7 +13,7 @@ public class MainController extends Application {
 
     @Override
     public void start(Stage stage) throws IOException, SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("mainPanel.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(MainController.class.getResource("PistonPanel.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Moto Parts");
         stage.setScene(scene);

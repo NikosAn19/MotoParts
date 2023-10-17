@@ -8,7 +8,8 @@ public class QueryGenerator {
     public QueryGenerator(){
 
     }
-    public String generateSelectQuery(String inCompression , String inDiameter , String inPinDiameter , String inModel , String inBrand , String inStroke ){
+    public String generateSelectQuery(String inCode , String inTotalHeight, String inCompression , String inDiameter
+            , String inPinDiameter , String inModel , String inBrand , String inStroke , String inOversize ){
 
         LinkedHashMap<String , String> pistonMap;
 
@@ -28,6 +29,9 @@ public class QueryGenerator {
                (inPinDiameter == "" || inPinDiameter == null) &&
                (inModel == "" || inModel == null) &&
                (inBrand == "" || inBrand == null) &&
+               (inCode == "" || inCode == null) &&
+               (inTotalHeight == "" || inTotalHeight == null) &&
+               (inOversize == "" || inOversize == null) &&
                (inStroke == "" || inStroke == null))
        {
            query = "SELECT *" +"\n" +
@@ -52,6 +56,15 @@ public class QueryGenerator {
         }
         if(inStroke != "" && inStroke != null){
             pistonMap.put("stroke" , ex1 +inStroke +ex2);
+        }
+        if(inCode != "" && inCode != null){
+            pistonMap.put("code" , ex1 +inCode +ex2);
+        }
+        if(inTotalHeight != "" && inTotalHeight != null){
+            pistonMap.put("totalHeight" , ex1 +inTotalHeight +ex2);
+        }
+        if(inOversize != "" && inOversize != null){
+            pistonMap.put("oversize" , ex1 +inOversize +ex2);
         }
         int elementCounter = 1;
         int pistonMapSize = pistonMap.size();

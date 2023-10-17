@@ -14,54 +14,57 @@ import java.util.ResourceBundle;
 public class AddNewPistonController implements Initializable {
 
     @FXML
-    private TextField codeTF;
+    private ChoiceBox<String> strokeCB;
 
     @FXML
-    private TextField diameterTF;
+    private TextField codeTF;
 
     @FXML
     private TextField totalHeightTF;
 
     @FXML
-    private TextField compTF;
+    private TextField compressionHeightTF;
+
+    @FXML
+    private TextField diameterTF;
 
     @FXML
     private TextField pinDiameterTF;
 
     @FXML
-    private TextField strokeTF;
+    private TextField brandTF;
 
     @FXML
     private TextField modelTF;
 
     @FXML
-    private TextField brandTF;
+    private TextField oversizeTF;
 
     @FXML
     private Button addPistonBttn;
 
-    @FXML
-    private ChoiceBox<String> strokeCB;
 
     private final String[] strokes = {"2T", "4T"};
 
-    String query = "INSERT INTO PISTON";
+
 
     @FXML
     void addNewPiston(ActionEvent actionEvent) throws SQLException {
         String inCode = codeTF.getText();
         String inHeight = totalHeightTF.getText();
-        String inCompression = compTF.getText();
+        String inCompression = compressionHeightTF.getText();
         String inDiameter = diameterTF.getText();
         String inPinDiameter = pinDiameterTF.getText();
         String inModel = modelTF.getText();
         String inBrand = brandTF.getText();
         String inStroke = strokeCB.getValue();
+        String inOversize = oversizeTF.getText();
+
 
 
         DatabaseController controller = new DatabaseController();
         controller.initDatabase();
-        controller.insertPiston(inCode, inDiameter, inHeight, inCompression, inPinDiameter, inStroke, inBrand, inModel);
+        controller.insertPiston(inCode, inDiameter, inHeight, inCompression, inPinDiameter, inStroke, inBrand, inModel , inOversize);
 
 
     }
