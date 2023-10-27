@@ -10,7 +10,8 @@ module com.example.motoparts {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires java.sql;
-    requires com.gluonhq.charm.glisten;
+    requires mysql.connector.java;
+//    requires com.gluonhq.charm.glisten;
 
     opens com.example.motoparts to javafx.fxml;
     opens data.classes to javafx.fxml;

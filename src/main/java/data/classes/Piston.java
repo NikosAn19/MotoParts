@@ -9,9 +9,6 @@ public class Piston {
     private String stroke;
     private String brand;
     private String model;
-
-
-
     private String oversize;
 
 

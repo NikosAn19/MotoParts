@@ -1,6 +1,7 @@
 package com.example.motoparts;
 
 import data.classes.Piston;
+import data.classes.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -46,7 +47,7 @@ public class SearchPistonPanelController implements Initializable {
     @FXML
     private Button searchBtn;
 
-    private final String[] strokes = {"2T" ,"4T"};
+    private final String[] strokes = {"2T" ,"4T" , "All Strokes"};
 
     @FXML
     void searchBtnClicked(ActionEvent actionEvent){
@@ -74,7 +75,7 @@ public class SearchPistonPanelController implements Initializable {
             while(rs.next()){
                 String pistonCode = rs.getString("pistonCode") ;
                 Double diameter = rs.getDouble("diameter");
-                Double totalHeight = rs.getDouble("height");
+                Double totalHeight = rs.getDouble("totalHeight");
                 Double compressionHeight = rs.getDouble("compressionHeight");
                 Double pinDiameter = rs.getDouble("pinDiameter");
                 String stroke = rs.getString("stroke");
@@ -89,6 +90,9 @@ public class SearchPistonPanelController implements Initializable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
+        PistonPanelController panel = Singleton.getInstance().getData();
+        panel.displaySearchResults(pistons);
     }
 
     @Override

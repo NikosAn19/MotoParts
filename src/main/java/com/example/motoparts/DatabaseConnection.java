@@ -10,9 +10,9 @@ public class DatabaseConnection {
 
     public Connection getDBConnection(){
         String databaseName = "MotoParts";
-        String databaseUser = "root";
-        String databasePassword = "pergaminos007";
-        String url = "jdbc:mysql://localhost:3306/motoparts";
+        String databaseUser = "nikos";
+        String databasePassword = "pergaminos007!";
+        String url = "jdbc:mysql://127.0.0.1:3306/MotoParts";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");

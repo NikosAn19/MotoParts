@@ -1,6 +1,7 @@
 package com.example.motoparts;
 
 import data.classes.Piston;
+import data.classes.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,7 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 //import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import com.gluonhq.charm.glisten.control.TextField;
+//import com.gluonhq.charm.glisten.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
@@ -98,7 +99,7 @@ public class PistonPanelController implements Initializable {
             while(rs.next()){
                 String pistonCode = rs.getString("pistonCode") ;
                 Double diameter = rs.getDouble("diameter");
-                Double totalHeight = rs.getDouble("height");
+                Double totalHeight = rs.getDouble("totalHeight");
                 Double compressionHeight = rs.getDouble("compressionHeight");
                 Double pinDiameter = rs.getDouble("pinDiameter");
                 String stroke = rs.getString("stroke");
@@ -134,6 +135,23 @@ public class PistonPanelController implements Initializable {
 
     }
 
+    @FXML
+    public void displaySearchResults(ObservableList<Piston> pistons){
+
+        pistonCodeCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("pistonCode"));
+        pistonDiameterCol.setCellValueFactory(new PropertyValueFactory<Piston , Double>("diameter"));
+        pistonTotalHeightCol.setCellValueFactory(new PropertyValueFactory<Piston , Double>("totalHeight"));
+        pistonCompressionHeightCol.setCellValueFactory(new PropertyValueFactory<Piston , Double>("compressionHeight"));
+        pinDiameterCol.setCellValueFactory(new PropertyValueFactory<Piston , Double>("pinDiameter"));
+        pistonStrokeCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("stroke"));
+        pistonBrandCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("brand"));
+        pistonModelCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("model"));
+        pistonOversizeCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("oversize"));
+
+        pistonTable.setItems(pistons);
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DatabaseController controller = new DatabaseController();
@@ -145,7 +163,7 @@ public class PistonPanelController implements Initializable {
             while(rs.next()){
                 String pistonCode = rs.getString("pistonCode") ;
                 Double diameter = rs.getDouble("diameter");
-                Double totalHeight = rs.getDouble("height");
+                Double totalHeight = rs.getDouble("totalHeight");
                 Double compressionHeight = rs.getDouble("compressionHeight");
                 Double pinDiameter = rs.getDouble("pinDiameter");
                 String stroke = rs.getString("stroke");
@@ -170,5 +188,6 @@ public class PistonPanelController implements Initializable {
 
         pistonTable.setItems(pistons);
 
+        Singleton.setData(this);
     }
 }
