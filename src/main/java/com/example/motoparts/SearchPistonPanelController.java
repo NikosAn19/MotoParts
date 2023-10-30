@@ -97,6 +97,8 @@ public class SearchPistonPanelController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         strokeCB.getItems().addAll(strokes);
+        strokeCB.setValue(strokes[2]);
     }
 }

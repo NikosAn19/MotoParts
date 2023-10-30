@@ -1,5 +1,11 @@
 package com.example.motoparts;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.*;
 
 public class DatabaseController {
@@ -62,20 +68,20 @@ public class DatabaseController {
             System.out.println(statement.execute());
             statement.close();
 
-            return;
+
         }catch (SQLException e){
 
-//            System.out.println("Duplicate entry");
-//            try {
-//                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alertDialog.fxml"));
-//                Parent root = (Parent)fxmlLoader.load();
-//                Stage stage = new Stage();
-//                stage.setScene(new Scene((root)));
-//                stage.show();
-//
-//            } catch (IOException ex) {
-//                throw new RuntimeException(ex);
-//            }
+            System.out.println("Duplicate entry");
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("alertDialog.fxml"));
+                Parent root = (Parent)fxmlLoader.load();
+                Stage stage = new Stage();
+                stage.setScene(new Scene((root)));
+                stage.show();
+
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
         System.out.println("The piston with code : " +inCode +" and diameter : " +inDiameter +" has been inserted");
 

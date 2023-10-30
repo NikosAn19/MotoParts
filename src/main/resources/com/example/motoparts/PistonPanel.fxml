@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
@@ -13,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="1252.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.motoparts.PistonPanelController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="752.0" prefWidth="1252.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.motoparts.PistonPanelController">
    <left>
       <VBox prefHeight="508.0" prefWidth="202.0" style="-fx-background-color: #4d0c70;" BorderPane.alignment="CENTER">
          <children>
@@ -30,9 +29,7 @@
                <padding>
                   <Insets left="50.0" />
                </padding>
-               <graphic>
-                  <FontAwesomeIconView fill="#f2eeee" glyphName="EDIT" />
-               </graphic>
+
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -44,9 +41,7 @@
                <padding>
                   <Insets left="50.0" />
                </padding>
-               <graphic>
-                  <FontAwesomeIconView fill="#f2eeee" glyphName="EDIT" />
-               </graphic>
+
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -60,14 +55,14 @@
    <center>
       <TableView fx:id="pistonTable" BorderPane.alignment="CENTER">
         <columns>
+            <TableColumn id="pistonBrandCol" fx:id="pistonBrandCol" prefWidth="65.0" text="Brand" />
+            <TableColumn id="pistonModelCol" fx:id="pistonModelCol" prefWidth="63.0" text="Model" />
             <TableColumn id="pistonCodeCol" fx:id="pistonCodeCol" prefWidth="75.0" text="Code" />
             <TableColumn id="pistonDiameterCol" fx:id="pistonDiameterCol" prefWidth="96.0" text="Diameter (mm)" />
             <TableColumn id="pistonHeightCol" fx:id="pistonTotalHeightCol" prefWidth="112.0" text="Total Height (mm)" />
             <TableColumn id="pistonPinCol" fx:id="pistonCompressionHeightCol" prefWidth="153.0" text="Compression Height (mm)" />
             <TableColumn id="pistonPinCol" fx:id="pinDiameterCol" prefWidth="122.0" text="Pin Diameter (mm)" />
             <TableColumn id="pistonPinCol" fx:id="pistonStrokeCol" prefWidth="103.0" text="Stroke" />
-            <TableColumn id="pistonBrandCol" fx:id="pistonBrandCol" prefWidth="65.0" text="Brand" />
-            <TableColumn id="pistonModelCol" fx:id="pistonModelCol" prefWidth="63.0" text="Model" />
             <TableColumn id="pistonOversizeCol" fx:id="pistonOversizeCol" prefWidth="74.0" text="Oversize" />
         </columns>
       </TableView>
