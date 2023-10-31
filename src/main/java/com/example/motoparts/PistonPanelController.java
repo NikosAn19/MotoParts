@@ -2,6 +2,7 @@ package com.example.motoparts;
 
 import data.classes.Piston;
 import data.classes.PistonDataSingleton;
+import data.classes.PistonPanelStageSingleton;
 import data.classes.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,8 @@ import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.controlsfx.control.action.Action;
 
@@ -63,7 +66,10 @@ public class PistonPanelController implements Initializable {
     @FXML
     private Button refreshBtn;
 
+    @FXML
+    private AnchorPane topBar;
 
+    private double x,y = 0;
     @FXML
     void editSelectedItemClicked(ActionEvent event) throws IOException {
         try{
@@ -223,6 +229,17 @@ public class PistonPanelController implements Initializable {
         pistonOversizeCol.setCellValueFactory(new PropertyValueFactory<Piston , String>("oversize"));
 
         pistonTable.setItems(pistons);
+
+        Stage stage = PistonPanelStageSingleton.getInstance().getData();
+//
+//        topBar.setOnMousePressed(mouseEvent -> {
+//            x = mouseEvent.getSceneX();
+//            y = mouseEvent.getSceneY();
+//        });
+//        topBar.setOnMouseDragged(mouseEvent -> {
+//            stage.setX(mouseEvent.getScreenX() -x);
+//            stage.setY(mouseEvent.getScreenY() -y);
+//        });
 
         Singleton.setData(this);
     }

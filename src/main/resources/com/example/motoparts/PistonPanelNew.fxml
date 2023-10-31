@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="841.0" prefWidth="1270.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.motoparts.PistonPanelController">
+   <left>
+      <VBox prefHeight="508.0" prefWidth="202.0" style="-fx-background-color: #787878;" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="118.0" prefWidth="241.0">
+               <children>
+                  <Label layoutX="46.0" layoutY="42.0" text="MotoParts" textFill="#f5f3f3">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="240.0" style="-fx-background-color: #505050;" text="PISTONS" textFill="#f2ecec">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+            <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="241.0" style="-fx-background-color: #505050;" text="RODS" textFill="#f2ecec">
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <TableView fx:id="pistonTable" prefHeight="687.0" prefWidth="891.0" style="-fx-background-color: #787878;" stylesheets="@Styles/tableview_color_transparent.css" BorderPane.alignment="CENTER">
+        <columns>
+            <TableColumn id="pistonBrandCol" fx:id="pistonBrandCol" prefWidth="65.0" text="Brand" />
+            <TableColumn id="pistonModelCol" fx:id="pistonModelCol" prefWidth="63.0" text="Model" />
+            <TableColumn id="pistonCodeCol" fx:id="pistonCodeCol" prefWidth="75.0" text="Code" />
+            <TableColumn id="pistonDiameterCol" fx:id="pistonDiameterCol" prefWidth="158.0" text="Standart Diameter (mm)" />
+            <TableColumn id="pistonHeightCol" fx:id="pistonTotalHeightCol" prefWidth="119.0" text="Total Height (mm)" />
+            <TableColumn id="pistonPinCol" fx:id="pistonCompressionHeightCol" prefWidth="153.0" text="Compression Height (mm)" />
+            <TableColumn id="pistonPinCol" fx:id="pinDiameterCol" prefWidth="114.0" text="Pin Diameter (mm)" />
+            <TableColumn id="pistonPinCol" fx:id="pistonStrokeCol" prefWidth="40.0" text="Tact" />
+            <TableColumn id="pistonOversizeCol" fx:id="pistonOversizeCol" prefWidth="87.0" text="Oversize" />
+        </columns>
+      </TableView>
+   </center>
+   <bottom>
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #787878;" BorderPane.alignment="CENTER" />
+   </bottom>
+   <right>
+      <VBox prefHeight="605.0" prefWidth="177.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="searchPistonsBtn" mnemonicParsing="false" onAction="#openSearchPistonWindow" prefHeight="25.0" prefWidth="121.0" text="Search">
+               <VBox.margin>
+                  <Insets left="30.0" top="100.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="deleteBtn" mnemonicParsing="false" onAction="#deletePistonPressed" prefHeight="25.0" prefWidth="121.0" text="Delete">
+               <VBox.margin>
+                  <Insets left="30.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="refreshBtn" mnemonicParsing="false" onAction="#refresh" prefHeight="25.0" prefWidth="120.0" text="Refresh">
+               <VBox.margin>
+                  <Insets left="30.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="addNewPistonBtn" mnemonicParsing="false" onAction="#openNewPistonWindow" prefHeight="25.0" prefWidth="121.0" text="Add">
+               <VBox.margin>
+                  <Insets left="30.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="editBtn" mnemonicParsing="false" onAction="#editSelectedItemClicked" prefHeight="25.0" prefWidth="121.0" text="Edit">
+               <VBox.margin>
+                  <Insets left="30.0" top="50.0" />
+               </VBox.margin>
+            </Button>
+         </children></VBox>
+   </right>
+   <top>
+      <AnchorPane fx:id="topBar" prefHeight="25.0" prefWidth="1270.0" stylesheets="@Styles/topbar_style.css" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_RIGHT" prefHeight="25.0" prefWidth="1270.0">
+               <children>
+                  <Button mnemonicParsing="false">
+                     <graphic>
+                        <SVGPath content="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z" fill="RED" stroke="WHITE" />
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>
