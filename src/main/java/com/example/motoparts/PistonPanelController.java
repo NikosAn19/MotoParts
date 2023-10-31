@@ -1,6 +1,7 @@
 package com.example.motoparts;
 
 import data.classes.Piston;
+import data.classes.PistonDataSingleton;
 import data.classes.Singleton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +21,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 import javafx.stage.Stage;
+import org.controlsfx.control.action.Action;
 
 public class PistonPanelController implements Initializable {
 
@@ -63,6 +65,40 @@ public class PistonPanelController implements Initializable {
 
 
     @FXML
+    void editSelectedItemClicked(ActionEvent event) throws IOException {
+        try{
+            ObservableList<Piston> list = pistonTable.getSelectionModel().getSelectedItems();
+            String code = list.get(0).getPistonCode();
+            String brand = list.get(0).getBrand();
+            String model = list.get(0).getModel();
+            String diameter = String.valueOf(list.get(0).getDiameter());
+            String totalHeight = String.valueOf(list.get(0).getTotalHeight());
+            String pinDiameter = String.valueOf(list.get(0).getPinDiameter());
+            String compressionHeight = String.valueOf(list.get(0).getCompressionHeight());
+            String stroke = list.get(0).getStroke();
+            String oversize = list.get(0).getOversize();
+
+            Piston piston = list.get(0);
+            PistonDataSingleton.setData(piston);
+
+            openEditWindow();
+        }catch (Exception e){
+            System.out.println("Select an item to edit");
+        }
+
+
+    }
+    @FXML
+    private void openEditWindow() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("EditPistonPanel.fxml"));
+        Parent root = (Parent)fxmlLoader.load();
+        Stage stage = new Stage();
+        stage.setScene(new Scene((root)));
+        stage.show();
+
+    }
+
+    @FXML
     void openNewPistonWindow(ActionEvent event) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("addNewPistonPanel.fxml"));
         Parent root = (Parent)fxmlLoader.load();
@@ -76,7 +112,8 @@ public class PistonPanelController implements Initializable {
     void deletePistonPressed(ActionEvent event){
 
         ObservableList<Piston> list = pistonTable.getSelectionModel().getSelectedItems();
-        System.out.println(list.get(0).getPistonCode()+" " +list.get(0).getModel() +" " +list.get(0).getBrand() +" " +list.get(0).getDiameter());
+        System.out.println(list.get(0).getPistonCode()+" " +list.get(0).getModel() +" " +list.get(0).getBrand() +" "
+                +list.get(0).getDiameter());
         DatabaseController controller = new DatabaseController();
         controller.initDatabase();
         controller.deletePiston(list.get(0).getPistonCode());
@@ -105,7 +142,8 @@ public class PistonPanelController implements Initializable {
                 String model = rs.getString("model");
                 String oversize = rs.getString("oversize");
 
-                pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight, pinDiameter , stroke ,  brand , model , oversize));
+                pistons.add(new Piston(pistonCode , diameter , totalHeight , compressionHeight,
+                        pinDiameter , stroke ,  brand , model , oversize));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

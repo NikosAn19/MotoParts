@@ -106,6 +106,35 @@ public class DatabaseController {
         System.out.println("The piston with code : " +inCode  + " has been deleted");
 
     }
+    public void updatePiston(String inCode, String inDiameter, String inHeight, String inCompression,
+                             String inPinDiameter, String inStroke, String inBrand, String inModel,
+                             String inOversize, String oldCode){
+
+        String query = "UPDATE PISTONS SET pistonCode=?, diameter=?, totalHeight=?, compressionHeight=?, pinDiameter=?," +
+                       " stroke=?, brand=?, model=?, oversize=? WHERE pistonCode=?";
+
+       try{
+           PreparedStatement statement = conn.prepareStatement(query);
+           statement.setString(1 , inCode);
+           statement.setDouble(2 , Double.parseDouble(inDiameter));
+           statement.setDouble(3 , Double.parseDouble(inHeight));
+           statement.setDouble(4 , Double.parseDouble(inCompression));
+           statement.setDouble(5 , Double.parseDouble(inPinDiameter));
+           statement.setString(6 , inStroke);
+           statement.setString(7 , inBrand);
+           statement.setString(8 , inModel);
+           statement.setString(9 , inOversize);
+           statement.setString(10 , oldCode);
+
+           System.out.println(statement.execute());
+           statement.close();
+           System.out.println("Piston updated successfully");
+       }catch(Exception e){
+           System.out.println("ekanes malakia");
+       }
+
+
+    }
 
 
 
